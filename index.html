@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ky">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Көз жана оптикалык кубулуштар — Толук материал</title>
+    <meta name="description"
+        content="Көздүн түзүлүшү, жарыктын сынуусу, аккомодация, оптикалык кубулуштар, мисалдар жана практика. Физика, 9-класс.">
+    <style>
+        /* ====== Стиль (бир файлда) ====== */
+        :root {
+            --bg-1: #071428;
+            --bg-2: #08293a;
+            --accent: #2a9df4;
+            --accent-2: #5dd3ff;
+            --text: #eaf6fb;
+            --muted: #b8d7e0;
+            --card: rgba(255, 255, 255, 0.03);
+            --radius: 12px;
+            --max-width: 1100px;
+            --shadow-lg: 0 20px 50px rgba(2, 8, 20, 0.6);
+            --shadow-sm: 0 6px 18px rgba(2, 8, 20, 0.45);
+            --focus: 3px solid rgba(93, 211, 255, 0.18);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+            color: var(--text);
+            background: radial-gradient(900px 300px at 8% 8%, rgba(93, 211, 255, 0.04), transparent), linear-gradient(180deg, var(--bg-1), var(--bg-2));
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            line-height: 1.5;
+            padding-top: 96px
+        }
+
+        main,
+        header,
+        footer {
+            max-width: var(--max-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 16px
+        }
+
+        /* header fixed centered */
+        header {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 48px);
+            max-width: var(--max-width);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 12px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            z-index: 1400;
+            gap: 12px
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.35rem;
+            color: var(--accent);
+            font-weight: 700;
+            text-align: center
+        }
+
+        .hamburger-wrapper {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1450
+        }
+
+        .nav-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 36px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 6px;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm)
+        }
+
+        .nav-toggle:focus {
+            outline: var(--focus);
+            outline-offset: 4px
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--text);
+            border-radius: 3px;
+            transition: transform .32s cubic-bezier(.2, .9, .2, 1), opacity .18s linear
+        }
+
+        .nav-toggle span+span {
+            margin-top: 6px
+        }
+
+        /* offcanvas (оң жактан) */
+        #offcanvas {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 320px;
+            max-width: 86vw;
+            height: 100vh;
+            padding: 64px 20px 20px 20px;
+            background: linear-gradient(180deg, var(--accent), var(--accent-2));
+            color: #fff;
+            box-shadow: var(--shadow-lg);
+            transition: right .42s cubic-bezier(.2, .9, .2, 1);
+            z-index: 1380;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow: auto
+        }
+
+        #offcanvas .nav-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        #offcanvas .nav-list a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06)
+        }
+
+        #offcanvas .nav-list a:hover,
+        #offcanvas .nav-list a:focus {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(6px)
+        }
+
+        /* overlay */
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .28s ease;
+            z-index: 1370
+        }
+
+        body.nav-open #offcanvas {
+            right: 0
+        }
+
+        body.nav-open .nav-overlay {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        body.nav-open .nav-toggle span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg)
+        }
+
+        body.nav-open .nav-toggle span:nth-child(2) {
+            opacity: 0
+        }
+
+        body.nav-open .nav-toggle span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg)
+        }
+
+        /* main content */
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 18px 0 40px
+        }
+
+        section {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(255, 255, 255, 0.02)
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--accent);
+            font-size: 1.25rem
+        }
+
+        h3 {
+            color: var(--accent-2)
+        }
+
+        p,
+        li,
+        dd {
+            color: var(--text)
+        }
+
+        ul,
+        ol {
+            margin-left: 18px
+        }
+
+        figure {
+            margin: 12px 0;
+            text-align: center
+        }
+
+        figure img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 12px 36px rgba(2, 8, 20, 0.6)
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: left
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.12)
+        }
+
+        pre {
+            background: rgba(0, 0, 0, 0.18);
+            padding: 10px;
+            border-radius: 8px;
+            overflow: auto;
+            font-family: ui-monospace, monospace;
+            color: var(--text)
+        }
+
+        /* utility */
+        .muted {
+            color: var(--muted)
+        }
+
+        .small {
+            font-size: 0.95rem;
+            color: var(--muted)
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        .center {
+            display: block;
+            margin: 0 auto
+        }
+
+        @media (max-width:880px) {
+            .two-col {
+                grid-template-columns: 1fr
+            }
+
+            header {
+                left: 0;
+                transform: none;
+                width: 100%;
+                padding: 12px
+            }
+
+            .hamburger-wrapper {
+                right: 12px
+            }
+
+            body {
+                padding-top: 82px
+            }
+
+            #offcanvas {
+                width: 86vw
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+                padding: 12mm
+            }
+
+            header,
+            .nav-toggle,
+            #offcanvas,
+            .nav-overlay {
+                display: none !important
+            }
+
+            section {
+                box-shadow: none;
+                border: none;
+                background: transparent
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header role="banner">
+        <h1>Көз жана анда журуучу оптикалык кубулуштар</h1>
+        <div class="hamburger-wrapper">
+            <button class="nav-toggle" aria-label="Меню" aria-expanded="false" aria-controls="offcanvas">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Offcanvas navigation -->
+    <nav aria-label="Башкы навигация">
+        <div id="offcanvas" aria-hidden="true">
+            <ul class="nav-list">
+                <li><a href="#anatomy">Көздүн түзүлүшү</a></li>
+                <li><a href="#optics-laws">Оптика мыйзамдары</a></li>
+                <li><a href="#refraction">Жарыктын сынуусу</a></li>
+                <li><a href="#accommodation">Аккомодация</a></li>
+                <li><a href="#phenomena">Оптикалык кубулуштар</a></li>
+                <li><a href="#instruments">Оптикалык аспаптар</a></li>
+                <li><a href="#experiments">Практикалар (жасоо)</a></li>
+                <li><a href="#formulas">Формулалар</a></li>
+                <li><a href="#examples">Мисалдар жана чечимдер</a></li>
+                <li><a href="#applications">Күнүмдүк колдонуу</a></li>
+                <li><a href="#vision-defects">Көз кемчиликтери</a></li>
+                <li><a href="#glossary">Сөздүк</a></li>
+                <li><a href="#handout">Кыскача конспект</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="nav-overlay" aria-hidden="true"></div>
+
+    <main>
+        <!-- 1 Anatomy -->
+        <section id="anatomy">
+            <h2>Көздүн түзүлүшү (анатомия) — кененирээк</h2>
+            <p>Көз — маалыматты жарык аркылуу кабыл алган орган. Төмөндө негизги бөлүктөр жана алардын функциялары кенен
+                жазылган:</p>
+            <div class="two-col">
+                <div>
+                    <h3>Бөлүктөрү</h3>
+                    <ul>
+                        <li><strong>Роговица (cornea)</strong> — тунук, жарыкты баштапкы сындыруучу катмар.</li>
+                        <li><strong>Ирис (iris)</strong> — боёлгон катмар, кындыкты (pupil) контролдойт.</li>
+                        <li><strong>Кындык (pupil)</strong> — жарык өтүүчү тешик.</li>
+                        <li><strong>Линза (lens)</strong> — сүрөттү торчого фокус кылат, аккомодация үчүн формасын
+                            өзгөртүүчү.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Фоторецепторлор</h3>
+                    <ul>
+                        <li><strong>Таякча (rods)</strong> — караңгыда көрүүгө жооп берет (жогорку сезгичтик).</li>
+                        <li><strong>Конус (cones)</strong> — түстү жана деталдуулукту түшүнүүгө жооп берет (R, G, B
+                            түрлөрү).</li>
+                        <li><strong>Оптикалык нерв (optic nerve)</strong> — сигналдарды мээге өткөрөт.</li>
+                    </ul>
+                </div>
+            </div>
+            <figure>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Human_eye_diagram.svg/600px-Human_eye_diagram.svg.png"
+                    alt="Көз диаграммасы">
+                <figcaption>Көздүн схемасы — негизги бөлүктөр.</figcaption>
+            </figure>
+        </section>
+
+        <!-- 2 Optics laws -->
+        <section id="optics-laws">
+            <h2>Оптика мыйзамдары — түшүндүрмө жана мисал</h2>
+            <p>Оптикада жарыктын жүрүшүн түшүндүргөн негизги үч принцип бар:</p>
+            <table>
+                <tr>
+                    <th>Мыйзам</th>
+                    <th>Кыскача</th>
+                    <th>Мисал</th>
+                </tr>
+                <tr>
+                    <td>Рефлексия</td>
+                    <td>Көз каранда — чагылуу: θ<sub>i</sub> = θ<sub>r</sub></td>
+                    <td>Айнадагы сүрөт</td>
+                </tr>
+                <tr>
+                    <td>Сынуу (Снелл)</td>
+                    <td>n<sub>1</sub>·sin(θ<sub>1</sub>) = n<sub>2</sub>·sin(θ<sub>2</sub>)</td>
+                    <td>Карандаш стаканда кыйшайып көрүнөт</td>
+                </tr>
+                <tr>
+                    <td>Дисперсия</td>
+                    <td>Толкун узундугуна жараша сынуу</td>
+                    <td>Райдуга — призма / тамчы</td>
+                </tr>
+            </table>
+            <p class="small muted">Эске салуу: n — сынуу индекси; мисалы, аба үчүн n ≈ 1.00, суу үчүн n ≈ 1.33.</p>
+        </section>
+
+        <!-- 3 refraction -->
+        <section id="refraction">
+            <h2>Жарыктын сынуусу — деталдуу</h2>
+            <p>Эки ортодон өтүүдө нурдун багыты өзгөрөт. Снелл мыйзамы буга далил. Көздө роговица негизги ролду ойнойт
+                (биринчи чоң сынуу), андан кийин линза сүрөттү тактайт.</p>
+            <h3>Рай диаграммасы</h3>
+            <p>Негизги үч нук (principal rays): параллель нур — фокуска, оптикалык борбор аркылуу өткөн нур өзгөрүүсүз,
+                фокус аркылуу өткөн нур параллелге чыгат.</p>
+            <figure>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Thin_lens_diagram.svg/600px-Thin_lens_diagram.svg.png"
+                    alt="Ray diagram">
+                <figcaption>Жука линзанын рай-диаграммасы.</figcaption>
+            </figure>
+        </section>
+
+        <!-- 4 accommodation -->
+        <section id="accommodation">
+            <h2>Аккомодация — кантип жакын жана алысты карайбыз</h2>
+            <p>Цилиардык булчуңдар линзанын формасын өзгөртүп, фокус аралыгын өзгөртөт. Жакынды караганда линза
+                калыңдайт, алысты караганда ичкерейет. Курак менен ийкемдүүлүк азайып, пресбиопия пайда болот.</p>
+            <ul>
+                <li><strong>Балдар:</strong> линза ийкемдүү, жакынды оңой карашат.</li>
+                <li><strong>Улгайган адамдар:</strong> линза ийкемдүүлүгү азайып, окуу үчүн окуу айнек керек болушу
+                    мүмкүн.</li>
+            </ul>
+        </section>
+
+        <!-- 5 phenomena -->
+        <section id="phenomena">
+            <h2>Оптикалык кубулуштар — кененирээк</h2>
+            <h3>Дисперсия</h3>
+            <p>Призма же суу тамчысы ак жарыкты спектрге бөлөт — фиолет кийинкисине караганда көбүрөөк сынат.</p>
+
+            <h3>Интерференция жана дифракция</h3>
+            <p>Жарык толкунчаларынын өз ара аракеттенишинен пайда болгон үлгүлөр. Мисалы, тунук сеткадагы жука сызыктар
+                интерференцияны көрсөтөт.</p>
+
+            <h3>Поляризация</h3>
+            <p>Жарыктын электр векторунун белгилүү бир багытта болушу — поляризация. Поляризацияланган айнек чагылууну
+                азайтат (фотоаппараттагы поляризация фильтри сыяктуу).</p>
+        </section>
+
+        <!-- 6 instruments -->
+        <section id="instruments">
+            <h2>Оптикалык аспаптар — принцип жана колдонуу</h2>
+            <div class="two-col">
+                <div>
+                    <h3>Микроскоп</h3>
+                    <p>Объектив жана окуянын (eyepiece) комплекси — объектти чоңойтуп көрсөтөт. Клеткаларды,
+                        микроструктураларды иликтөөдө колдонулат.</p>
+                </div>
+                <div>
+                    <h3>Телескоп</h3>
+                    <p>Рефрактор же рефлектор — аспан объекттерин байкоого мүмкүндүк берет. Объектив же чоң айна
+                        нурларды чогултат.</p>
+                </div>
+            </div>
+            <h3>Камера жана адамдын көзү</h3>
+            <p>Камера — линза жана сенсор; көз — линза жана торчо. Экспозиция (shutter), апертура (диафрагма) —
+                камерада, ал эми көздө ирис бул функцияларды аткарат.</p>
+        </section>
+
+        <!-- 7 experiments detailed -->
+        <section id="experiments">
+            <h2>Практикалар — эксперименттер жана аракетти пландоо</h2>
+            <h3>Практика 1 — Карандаш стаканда (сынуу)</h3>
+            <p><strong>Материалдар:</strong> тазаланган стакан, суу, карандаш, бумага, маркер.</p>
+            <ol>
+                <li>Стаканды жарым толтуруп, карандашты вертикалдуу салыңыз.</li>
+                <li>Тыштан караганда карандаш кыйшайганын байкайсыз — бул нурдун сынуусу.</li>
+                <li>Көз карашынан сүрөттүн кайсы жагында (башында/аркында) түзүлүшүн сүрөттөп бериңиз — бул билим
+                    берүүчү талкуу үчүн жакшы.</li>
+            </ol>
+
+            <h3>Практика 2 — Призма менен спектр алуу</h3>
+            <p><strong>Материалдар:</strong> өлчөөнүн жалпак бетиндеги призма, ак картон, лампа же күн нуру.</p>
+            <ol>
+                <li>Нурду призмага багыттап, картонго туш кылыңыз.</li>
+                <li>Караңгы бөлмөдө спектрди байкап, ар түстүн ордун белгилеңиз.</li>
+            </ol>
+
+            <h3>Практика 3 — Лупа жана фокус</h3>
+            <p>Лупа менен майда текстти ар кандай аралыкта кармап, кайсы аралыкта текст так көрүнөрүн таап көрүңүз. Бул
+                линзанын фокусун жана аккомодацияны көрсөтөт.</p>
+        </section>
+
+        <!-- 8 formulas -->
+        <section id="formulas">
+            <h2>Формулалар — ыңгайлуу жакындатуу</h2>
+            <table>
+                <tr>
+                    <th>Формула</th>
+                    <th>Түшүндүрмө</th>
+                </tr>
+                <tr>
+                    <td>n<sub>1</sub>·sin(θ<sub>1</sub>) = n<sub>2</sub>·sin(θ<sub>2</sub>)</td>
+                    <td>Снеллдин мыйзамы — сынуу</td>
+                </tr>
+                <tr>
+                    <td>1 / f = 1 / d<sub>o</sub> + 1 / d<sub>i</sub></td>
+                    <td>Жука линзанын формуласы (f — фокус)</td>
+                </tr>
+                <tr>
+                    <td>m = h<sub>i</sub> / h<sub>o</sub> = − d<sub>i</sub> / d<sub>o</sub></td>
+                    <td>Чоңойтуу (magnification)</td>
+                </tr>
+                <tr>
+                    <td>P = 1 / f</td>
+                    <td>Оптикалык кудурет (диоптрия), f — метражда</td>
+                </tr>
+            </table>
+            <p class="small muted">Мисалдарды колдонууда бирдиктерге көңүл буруңуз: сантиметр/метр.</p>
+        </section>
+
+        <!-- 9 examples -->
+        <section id="examples">
+            <h2>Мисалдар жана чечимдер — кошумча (эки мисал)</h2>
+
+            <h3>Мисал 1 — Снелл (сандык)</h3>
+            <p>Берилген: n<sub>1</sub> = 1.00 (аба), n<sub>2</sub> = 1.33 (суу), θ<sub>1</sub> = 40&deg;.</p>
+            <p><strong>Чечүү:</strong></p>
+            <ol>
+                <li>sin θ<sub>2</sub> = (n<sub>1</sub>/n<sub>2</sub>)·sin θ<sub>1</sub> = (1/1.33)·sin 40&deg;.</li>
+                <li>sin 40&deg; ≈ 0.6428, (1/1.33) ≈ 0.7519 → sin θ<sub>2</sub> ≈ 0.4835.</li>
+                <li>θ<sub>2</sub> = arcsin(0.4835) ≈ 28.9&deg;.</li>
+            </ol>
+            <pre>Жооп: θ<sub>2</sub> ≈ 28.9&deg; (сууда)</pre>
+
+            <h3>Мисал 2 — Жука линза (сырткы мисал)</h3>
+            <p>Берилген: f = 12 см, d<sub>o</sub> = 24 см. Табыш: d<sub>i</sub>, m.</p>
+            <ol>
+                <li>1/d<sub>i</sub> = 1/f − 1/d<sub>o</sub> = 1/12 − 1/24 = 0.08333 − 0.041666 = 0.041666.</li>
+                <li>d<sub>i</sub> = 1 / 0.041666 ≈ 24 см.</li>
+                <li>m = − d<sub>i</sub> / d<sub>o</sub> = −24 / 24 = −1 (изображение одинакового размера,
+                    инвертировано).</li>
+            </ol>
+            <pre>Жооп: d<sub>i</sub> ≈ 24 см, m = −1</pre>
+
+            <h3>Кошумча мисал (практика)</h3>
+            <p>Сынуу жана линза мисалдарын класста топторго берип, ар бир топ жоопту тактап, плакатка жазып презентация
+                кылып көрүңүз.</p>
+        </section>
+
+        <!-- 10 applications -->
+        <section id="applications">
+            <h2>Күнүмдүк турмушта оптика — колдонуу жана мааниси</h2>
+            <ul>
+                <li><strong>Дарыгерлик:</strong> офтальмологияда көз кемчиликтерин оңдоо, операциялар (LASIK) — оптика
+                    негизинде.</li>
+                <li><strong>Фотография:</strong> линзалар жана объективтер, экспозиция жана фокус — оптика маселелери.
+                </li>
+                <li><strong>Телескопия жана астрономия:</strong> алыстагы объекттерди байкоо, спектроскопия — оптикалык
+                    принциптер аркылуу.</li>
+                <li><strong>Технология:</strong> линза-камерлар, оптикалык шилтемелер (fiber optics) — маалымат ташуу.
+                </li>
+            </ul>
+        </section>
+
+        <!-- 11 vision defects -->
+        <section id="vision-defects">
+            <h2>Көз кемчиликтери — кененирээк жана оңдоо</h2>
+            <table>
+                <tr>
+                    <th>Кемчилик</th>
+                    <th>Себеби</th>
+                    <th>Түзөө</th>
+                </tr>
+                <tr>
+                    <td>Миопия (кыска көрүү)</td>
+                    <td>Сүрөт торчодон алдыда түзүлөт</td>
+                    <td>Диңгез линза (конкав), контакт линзалар</td>
+                </tr>
+                <tr>
+                    <td>Гиперметропия (узун көрүү)</td>
+                    <td>Сүрөт торчодон артта түзүлөт</td>
+                    <td>Конвекс (жыйналган) линза</td>
+                </tr>
+                <tr>
+                    <td>Астигматизм</td>
+                    <td>Роговица формасы бурмаланган</td>
+                    <td>Цилиндр линзалар, операция</td>
+                </tr>
+                <tr>
+                    <td>Пресбиопия</td>
+                    <td>Жаш менен линзанын ийкемдүүлүгү төмөндөйт</td>
+                    <td>Окуу айнек, прогрессив линзалар</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 12 glossary -->
+        <section id="glossary">
+            <h2>Сөздүк (глоссарий)</h2>
+            <dl>
+                <dt>Роговица</dt>
+                <dd>Көздүн алдыңкы тунук катмары — жарыкты сындырууга жооптуу.</dd>
+                <dt>Линза</dt>
+                <dd>Сүрөттү фокус кылган эластикалык орган.</dd>
+                <dt>Торчо (retina)</dt>
+                <dd>Фоторецепторлор (таякча жана конус) — жарык жана түс кабыл алынган бөлүк.</dd>
+                <dt>Фокус (f)</dt>
+                <dd>Линзанын жарыкты чогултуучу аралыгы (фокус аралык).</dd>
+            </dl>
+        </section>
+
+        <!-- 13 handout -->
+        <section id="handout">
+            <h2>Кыскача конспект (басып чыгарууга ыңгайлуу)</h2>
+            <p class="small muted">Төмөндө негизги формулалар жана жыйынтыкчалар — басып алып конспект түрүндө колдон.
+            </p>
+            <ul>
+                <li><strong>Снелл:</strong> n<sub>1</sub>·sin(θ<sub>1</sub>) = n<sub>2</sub>·sin(θ<sub>2</sub>)</li>
+                <li><strong>Жука линза:</strong> 1/f = 1/d<sub>o</sub> + 1/d<sub>i</sub></li>
+                <li><strong>Чоңойтуу:</strong> m = h<sub>i</sub>/h<sub>o</sub> = −d<sub>i</sub>/d<sub>o</sub></li>
+            </ul>
+            <p>Кыскача тапшырма: Снеллдин мисалын бери — n<sub>1</sub>=1, n<sub>2</sub>=1.5, θ<sub>1</sub>=45&deg; —
+                тапкыла.</p>
+        </section>
+
+    </main>
+
+    <footer
+        style="max-width:var(--max-width);margin:8px auto 40px;padding:6px 16px;color:var(--muted);text-align:center">
+        <hr style="border:0;border-top:1px solid rgba(255,255,255,0.04)">
+        <p style="margin:8px 0"> Физика — 9-класс. Автор — Атырбеков Даниэл </p>
+    </footer>
+
+    <script>
+        // ====== JS: гамбургер жана offcanvas ======
+        document.addEventListener('DOMContentLoaded', function () {
+            const navToggle = document.querySelector('.nav-toggle');
+            const offcanvas = document.getElementById('offcanvas');
+            let overlay = document.querySelector('.nav-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'nav-overlay';
+                overlay.setAttribute('aria-hidden', 'true');
+                document.body.appendChild(overlay);
+            }
+
+            function openMenu() {
+                document.body.classList.add('nav-open');
+                navToggle.setAttribute('aria-expanded', 'true');
+                offcanvas.setAttribute('aria-hidden', 'false');
+                overlay.setAttribute('aria-hidden', 'false');
+            }
+            function closeMenu() {
+                document.body.classList.remove('nav-open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                offcanvas.setAttribute('aria-hidden', 'true');
+                overlay.setAttribute('aria-hidden', 'true');
+            }
+
+            navToggle.addEventListener('click', function () {
+                if (document.body.classList.contains('nav-open')) closeMenu(); else openMenu();
+            });
+
+            overlay.addEventListener('click', closeMenu);
+
+            offcanvas.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', function (e) {
+                    // after closing, smooth scroll to section
+                    closeMenu();
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        setTimeout(() => {
+                            const el = document.querySelector(href);
+                            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 220);
+                    }
+                });
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+                    closeMenu();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
